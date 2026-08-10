@@ -1,5 +1,3 @@
-# property.te
-
 system_internal_prop(secureadb_prop)
 system_internal_prop(semc_sim_prop)
 system_internal_prop(semc_version_prop)
@@ -26,3 +24,4 @@ vendor_internal_prop(vendor_somc_hdcp_prop)
 vendor_internal_prop(vendor_target_id_prop)
 vendor_internal_prop(wifi_active_prop)
 vendor_internal_prop(wigig_prop)
+vendor_internal_prop(vendor_telephony_mnc_prop)
