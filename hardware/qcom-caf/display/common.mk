@@ -72,6 +72,6 @@ common_deps  :=
 kernel_includes :=
 
 ifeq ($(TARGET_COMPILE_WITH_MSM_KERNEL),true)
-    common_deps += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
-    kernel_includes += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+    common_deps += $(SOONG_OUT_DIR)/.intermediates/vendor/lineage/build/soong/generated_kernel_includes/gen/.dummy_dep
+    kernel_includes += $(SOONG_OUT_DIR)/.intermediates/vendor/lineage/build/soong/generated_kernel_includes/gen/usr/include
 endif

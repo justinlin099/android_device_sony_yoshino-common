@@ -6,7 +6,7 @@ LOCAL_MODULE              := libgpu_tonemapper
 LOCAL_VENDOR_MODULE       := true
 LOCAL_MODULE_TAGS         := optional
 LOCAL_HEADER_LIBRARIES    := display_headers
-LOCAL_C_INCLUDES          += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
+LOCAL_C_INCLUDES          += $(SOONG_OUT_DIR)/.intermediates/vendor/lineage/build/soong/generated_kernel_includes/gen/usr/include
 LOCAL_SHARED_LIBRARIES    := libEGL libGLESv2 libGLESv3 libui libutils liblog
 LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps) $(kernel_deps)
 
