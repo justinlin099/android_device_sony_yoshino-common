@@ -1,0 +1,6 @@
+service vendor.lights-yoshino /vendor/bin/hw/android.hardware.lights-service.yoshino
+    interface aidl android.hardware.light.ILights/default
+    class hal
+    user system
+    group system
+    shutdown critical

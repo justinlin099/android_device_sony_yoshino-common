@@ -1,0 +1,26 @@
+// SPDX-License-Identifier: Apache-2.0
+
+cc_defaults {
+    name: "yoshino_legacy_aidl_defaults",
+    vendor: true,
+    relative_install_path: "hw",
+    shared_libs: ["libbinder_ndk", "libhardware", "liblog"],
+}
+
+cc_binary {
+    name: "android.hardware.lights-service.yoshino",
+    defaults: ["yoshino_legacy_aidl_defaults"],
+    srcs: ["Lights.cpp"],
+    shared_libs: ["android.hardware.light-V2-ndk"],
+    init_rc: ["lights-yoshino.rc"],
+    vintf_fragments: ["lights-yoshino.xml"],
+}
+
+cc_binary {
+    name: "android.hardware.memtrack-service.yoshino",
+    defaults: ["yoshino_legacy_aidl_defaults"],
+    srcs: ["Memtrack.cpp"],
+    shared_libs: ["android.hardware.memtrack-V1-ndk"],
+    init_rc: ["memtrack-yoshino.rc"],
+    vintf_fragments: ["memtrack-yoshino.xml"],
+}

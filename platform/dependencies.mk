@@ -27,10 +27,6 @@ PRODUCT_PACKAGES += \
     libutils-v32 \
     libutils-v33
 
-# Configstore
-PRODUCT_PACKAGES += \
-    disable_configstore
-
 ### HIDL
 PRODUCT_PACKAGES += \
     android.hidl.allocator@1.0.vendor \

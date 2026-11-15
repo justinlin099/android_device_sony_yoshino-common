@@ -1,0 +1,5 @@
+service vendor.memtrack-yoshino /vendor/bin/hw/android.hardware.memtrack-service.yoshino
+    interface aidl android.hardware.memtrack.IMemtrack/default
+    class hal
+    user system
+    group system

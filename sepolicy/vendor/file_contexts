@@ -157,3 +157,6 @@
 /dev/bd7602-i2c       u:object_r:nfc_device:s0
 /dev/cxd224x-i2c      u:object_r:nfc_device:s0
 /(vendor|system/vendor)/bin/init\.lilac-cpuset\.sh              u:object_r:lilac_cpuset_exec:s0
+
+/(vendor|system/vendor)/bin/hw/android\.hardware\.lights-service\.yoshino    u:object_r:hal_light_default_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.memtrack-service\.yoshino    u:object_r:hal_memtrack_default_exec:s0

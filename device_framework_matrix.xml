@@ -9,14 +9,6 @@
         </interface>
     </hal>
 
-    <hal format="hidl" optional="true">
-        <name>android.hardware.configstore</name>
-        <version>1.1</version>
-        <interface>
-            <name>ISurfaceFlingerConfigs</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
 
     <hal format="aidl" optional="true">
         <name>android.hardware.drm</name>
@@ -27,14 +19,6 @@
         </interface>
     </hal>
 
-    <hal format="hidl" optional="true">
-        <name>android.hardware.light</name>
-        <version>2.0</version>
-        <interface>
-            <name>ILight</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
 
     <hal format="aidl" optional="true">
         <name>android.hardware.power</name>
