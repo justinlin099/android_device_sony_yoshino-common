@@ -23,6 +23,10 @@ TARGET_KERNEL_SOURCE  := kernel/sony/msm8998
 TARGET_KERNEL_VERSION := 4.4
 TARGET_KERNEL_CLANG_VERSION := r536225
 
+# The 4.4 compat vDSO still needs the 32-bit ARM toolchain prefix.
+YOSHINO_KERNEL_ARM32_PREFIX ?= arm-linux-androidkernel-
+TARGET_KERNEL_ADDITIONAL_FLAGS += CROSS_COMPILE_ARM32=$(YOSHINO_KERNEL_ARM32_PREFIX)
+
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += sched_enable_hmp=0
