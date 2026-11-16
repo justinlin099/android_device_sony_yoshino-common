@@ -15,7 +15,7 @@ init.taimport                        u:object_r:taimport_prop:s0
 
 persist.debug.wfd.appmonitoring      u:object_r:debug_wfd_prop:s0
 
-persist.camera.gyro.disable          u:object_r:vendor_persist_camera_prop:s0
+persist.camera.gyro.disable          u:object_r:vendor_somc_camera_gyro_prop:s0 exact bool
 
 persist.sys.assert.panic             u:object_r:oneplus_prop:s0
 
