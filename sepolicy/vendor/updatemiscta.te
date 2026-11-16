@@ -1,11 +1,5 @@
-# updatemiscta.te
-
-type updatemiscta, domain, coredomain;
-type updatemiscta_exec, system_file_type, exec_type, file_type;
-
 hal_client_domain(updatemiscta, hal_allocator)
 
-init_daemon_domain(updatemiscta)
 
 get_prop(updatemiscta, hwservicemanager_prop)
 hwbinder_use(updatemiscta)

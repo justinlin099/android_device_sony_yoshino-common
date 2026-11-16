@@ -114,6 +114,8 @@ TARGET_PER_MGR_ENABLED := true
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 BOARD_VENDOR_SEPOLICY_DIRS += device/sony/yoshino-common/sepolicy/vendor
 PRODUCT_PRIVATE_SEPOLICY_DIRS += device/sony/yoshino-common/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += device/sony/yoshino-common/sepolicy/system_ext/public
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += device/sony/yoshino-common/sepolicy/system_ext/private
 
 BUILD_BROKEN_TREBLE_SYSPROP_NEVERALLOW := true
 

@@ -111,13 +111,6 @@
 
 /sbin/tad_static                                                u:object_r:rootfs:s0
 
-/system/bin/cacaoserver                                         u:object_r:cacaoserver_exec:s0
-/system/bin/clean_scratch_files                                 u:object_r:clean_scratch_files_exec:s0
-/system/bin/mssconfig                                           u:object_r:mss_config_exec:s0
-/system/bin/perfservice                                         u:object_r:vendor_perfservice_exec:s0
-/system/bin/sony-modem-switcher                                 u:object_r:modem_switcher_exec:s0
-/system/bin/taimport                                            u:object_r:taimport_exec:s0
-/system/bin/updatemiscta                                        u:object_r:updatemiscta_exec:s0
 
 /(vendor|system/vendor)/bin/hw/display_cb                       u:object_r:display_cb_exec:s0
 /(vendor|system/vendor)/bin/hw/fpc_fingerprint@2\.1_HIDL-service    u:object_r:hal_fingerprint_fpc_exec:s0

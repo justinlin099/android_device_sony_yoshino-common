@@ -1,0 +1,25 @@
+typeattribute cacaoserver coredomain;
+type cacaoserver_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(cacaoserver)
+
+typeattribute clean_scratch_files coredomain;
+type clean_scratch_files_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(clean_scratch_files)
+
+typeattribute modem_switcher coredomain;
+type modem_switcher_exec, system_file_type, exec_type, file_type;
+init_daemon_domain(modem_switcher)
+
+typeattribute mss_config coredomain;
+type mss_config_exec, exec_type, file_type, system_file_type;
+init_daemon_domain(mss_config)
+
+typeattribute taimport coredomain;
+type taimport_exec, system_file_type, exec_type, file_type;
+init_daemon_domain(taimport)
+
+typeattribute updatemiscta coredomain;
+type updatemiscta_exec, system_file_type, exec_type, file_type;
+init_daemon_domain(updatemiscta)
+
+allow netd mss_config_exec:file { execute entrypoint getattr r_file_perms };

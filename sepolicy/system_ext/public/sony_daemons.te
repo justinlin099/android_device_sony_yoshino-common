@@ -1,0 +1,7 @@
+# System daemon types referenced by Sony vendor policy.
+type cacaoserver, domain;
+type clean_scratch_files, domain;
+type modem_switcher, domain;
+type mss_config, domain;
+type taimport, domain;
+type updatemiscta, domain;
