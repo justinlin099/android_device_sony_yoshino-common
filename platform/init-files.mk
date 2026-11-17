@@ -13,5 +13,5 @@ PRODUCT_COPY_FILES += \
     $(PLATFORM_PATH)/config/init/init.qcom.radio.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.qcom.radio.sh
 
 PRODUCT_COPY_FILES += \
-    $(PLATFORM_PATH)/config/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
+    $(PLATFORM_PATH)/config/init/ueventd.rc:$(TARGET_COPY_OUT_VENDOR)/etc/ueventd.rc \
     $(PLATFORM_PATH)/config/init/ueventd.yoshino.rc:$(TARGET_COPY_OUT_VENDOR)/odm/etc/ueventd.rc
