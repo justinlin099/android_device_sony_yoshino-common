@@ -2,6 +2,8 @@ cc_library_shared {
     name: "libsensorfix",
     proprietary: true,
     compile_multilib: "32",
+    // Keep sensor interposition when the provider loads this as an ELF dependency.
+    ldflags: ["-Wl,-z,global"],
 
     srcs: [
         "sensor_fix.cpp",

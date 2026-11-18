@@ -78,6 +78,9 @@ class IonAlloc {
   void CloseIonDevice();
 
   int ion_dev_fd_;
+#ifdef LILAC_ION_IMPORT
+  bool restricted_ion_ = false;
+#endif
 };
 
 }  // namespace gralloc1

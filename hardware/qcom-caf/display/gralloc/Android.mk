@@ -10,6 +10,10 @@ LOCAL_C_INCLUDES              := $(common_includes)
 LOCAL_CFLAGS                  := $(common_flags) -DLOG_TAG=\"qdgralloc\" -Wall -Werror -Wno-error
 LOCAL_SHARED_LIBRARIES        := $(common_libs) libqdMetaData libsync libgrallocutils \
                                  android.hardware.graphics.common@1.1
+ifeq ($(TARGET_DEVICE),lilac)
+LOCAL_CFLAGS += -DLILAC_ION_IMPORT
+LOCAL_SHARED_LIBRARIES += liblilac_ion_import
+endif
 ifeq ($(TARGET_KERNEL_VERSION), 4.14)
 LOCAL_C_INCLUDES              += external/libcxx/include \
                                  system/core/libion/include/ \

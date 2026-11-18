@@ -47,6 +47,11 @@
 #include "gr_utils.h"
 #include "gr_ion_alloc.h"
 
+#ifdef LILAC_ION_IMPORT
+#include <linux/ion_import.h>
+extern "C" int lilac_ion_open_for_gralloc(const char *path, int flags, bool *restricted);
+#endif
+
 namespace gralloc1 {
 
 bool IonAlloc::Init() {
@@ -157,7 +162,11 @@ int IonAlloc::CleanBuffer(void */*base*/, unsigned int /*size*/, unsigned int /*
 #ifndef TARGET_ION_ABI_VERSION  // Use old ion apis directly
 
 int IonAlloc::OpenIonDevice() {
+#ifdef LILAC_ION_IMPORT
+  return lilac_ion_open_for_gralloc(kIonDevice, O_RDONLY, &restricted_ion_);
+#else
   return open(kIonDevice, O_RDONLY);
+#endif
 }
 
 void IonAlloc::CloseIonDevice() {
@@ -240,6 +249,22 @@ int IonAlloc::CleanBuffer(void *base, unsigned int size, unsigned int offset, in
                           int /*fd*/) {
   ATRACE_CALL();
   ATRACE_INT("operation id", op);
+#ifdef LILAC_ION_IMPORT
+  if (restricted_ion_) {
+    ion_import_cache_data data = {.handle = handle, .op = ION_IMPORT_CACHE_CLEAN_INVALIDATE};
+    if (op == CACHE_CLEAN) {
+      data.op = ION_IMPORT_CACHE_CLEAN;
+    } else if (op == CACHE_INVALIDATE) {
+      data.op = ION_IMPORT_CACHE_INVALIDATE;
+    }
+    if (ioctl(ion_dev_fd_, INT(ION_IOC_IMPORT_CACHE), &data) != 0) {
+      int error = errno;
+      ALOGE("%s: ION_IOC_IMPORT_CACHE failed: %s", __FUNCTION__, strerror(error));
+      return -error;
+    }
+    return 0;
+  }
+#endif
   struct ion_flush_data flush_data;
   int err = 0;
 

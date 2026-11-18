@@ -52,6 +52,16 @@ extract "${MY_DIR}/proprietary-files-vendor.txt" "${SRC}" "${KANG}" --section "$
 
 DEVICE_COMMON_ROOT="${ANDROID_ROOT}"/vendor/"${VENDOR}"/"${DEVICE_COMMON}"/proprietary
 
+# Init launches cacaoserver in secure-exec mode, where LD_PRELOAD is ignored.
+CACAO_SERVER="${DEVICE_COMMON_ROOT}/bin/cacaoserver"
+if [ -f "${CACAO_SERVER}" ]; then
+    for library in libsonypiecompat.so libcacaoreffix.so; do
+        if ! "${PATCHELF}" --print-needed "${CACAO_SERVER}" | grep -Fxq "${library}"; then
+            "${PATCHELF}" --add-needed "${library}" "${CACAO_SERVER}"
+        fi
+    done
+fi
+
 sed -i 's/\/lib\/firmware\/ufs/\/etc\/firmware\/ufs/g' "${DEVICE_COMMON_ROOT}"/vendor/bin/ffu
 
 sed -i 's/version\=\"2\.0\"/version\=\"1\.0\"/g' "${DEVICE_COMMON_ROOT}"/product/etc/permissions/vendor.qti.hardware.data.connection-V1.0-java.xml
@@ -126,8 +136,8 @@ sed -i 's/writepid\ \/dev\/cpuset\/system-background\/tasks/task_profiles\ Servi
 sed -i 's/writepid \/dev\/cpuset\/camera-daemon\/tasks\ \/dev\/stune\/top-app\/tasks/task_profiles\ CameraServiceCapacity\ MaxPerformance/g' "${DEVICE_COMMON_ROOT}"/vendor/etc/init/vendor.somc.hardware.camera.provider@1.0-service.rc
 
 CAM_RC="${DEVICE_COMMON_ROOT}"/vendor/etc/init/vendor.somc.hardware.camera.provider@1.0-service.rc
-if ! grep -q "cama15" "${CAM_RC}"; then
-  sed -i '/capabilities SYS_NICE/a\    setenv LD_PRELOAD /vendor/lib/libsensorfix.so:/vendor/lib/cama15/libutils.so:/vendor/lib/cama15/libui.so:/vendor/lib/cama15/libc++.so\n    setenv LD_LIBRARY_PATH /vendor/lib/cama15:/vendor/lib:/system/lib' "${CAM_RC}"
+if [ -f "${CAM_RC}" ]; then
+    sed -i -E '/^[[:space:]]+setenv LD_PRELOAD .*libsensorfix\.so/d; /^[[:space:]]+setenv LD_LIBRARY_PATH \/vendor\/lib\/cama15:/d' "${CAM_RC}"
 fi
 
 "${MY_DIR}"/setup-makefiles.sh

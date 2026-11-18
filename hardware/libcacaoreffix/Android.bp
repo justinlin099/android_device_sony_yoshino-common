@@ -3,5 +3,7 @@ cc_library_shared {
     compile_multilib: "32",
     srcs: ["reffix.cpp"],
     shared_libs: ["libdl", "liblog"],
+    // Preserve RefBase interposition when loaded as a cacaoserver dependency.
+    ldflags: ["-Wl,-z,global"],
     cflags: ["-Wall", "-Werror"],
 }
